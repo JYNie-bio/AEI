@@ -4,7 +4,7 @@ This repository is intended to support the study on antimicrobial resistance (AM
 
 ## Repository Contents
 ### 1. Genome Processing Pipeline
-**Full pipeline** for genome processing, annotation and feature construction.
+**Full pipeline** for genome processing, annotation and feature construction. Details can be found in the command.sh file.
 ****
 
 ### 2. Machine Learning Scripts (Python & R)
@@ -15,11 +15,11 @@ All scripts for:
 - Cross-validation
 - Feature importance analysis
 
-### 3. Trained XGBoost Models
-**Complete trained model files**, along with detailed model architecture and parameter configurations for full reproduction of XGBoost models.
-
-### 4. Modeling Datasets
+### 3. Modeling Datasets
 Processed **feature matrices and metadata tables** used for modeling across 13 antibiotics.
+
+### 4. Trained XGBoost Models
+**Complete trained model files**, along with detailed model architecture and parameter configurations for full reproduction of XGBoost models.
 
 ### 5. Analytical & Visualization Code
 Scripts for:
