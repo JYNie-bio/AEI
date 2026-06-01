@@ -1,0 +1,11 @@
+	Feature	Importance
+0	broad-spectrum_class_A_beta-lactamase_TEM-1	0.75743306
+3	chloramphenicol/florfenicol_efflux_MFS_transporter_FloR	0.08345715
+7	class_A_beta-lactamase	0.041394275
+5	extended-spectrum_class_A_beta-lactamase_CTX-M-55	0.029147442
+1	aminoglycoside_N-acetyltransferase_AAC(3)-IVa	0.022685405
+8	extended-spectrum_class_A_beta-lactamase_CTX-M-14	0.018709755
+6	oxacillin-hydrolyzing_class_D_beta-lactamase_OXA-1	0.017291922
+4	NAD(+)--rifampin_ADP-ribosyltransferase_Arr-2	0.011520518
+2	SMR_family_transporter(WP_000159237.1)	0.009243319
+9	sulfonamide-resistant_dihydropteroate_synthase_Sul1	0.009117097

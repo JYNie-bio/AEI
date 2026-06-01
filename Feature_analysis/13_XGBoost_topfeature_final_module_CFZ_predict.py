@@ -1,0 +1,47 @@
+from pandas.api.types import CategoricalDtype
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn import metrics
+from xgboost import XGBClassifier
+import numpy as np
+import pandas as pd 
+import os
+import sys
+import re
+
+arguments = sys.argv
+new_working_directory = "/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/"
+os.chdir(new_working_directory)
+
+traindata=pd.read_csv("use_topfeature/XGBoost_CFZ_topfeature_finalmodel_traindata.txt",sep='\t', header=0,index_col=0, keep_default_na=False, dtype=CategoricalDtype())
+X_train=traindata.iloc[:, :-1]
+for col in X_train.columns:
+    if "|" in col:
+        X_train[col] = X_train[col].cat.set_categories(['Yes', 'No'])
+    else:
+        X_train[col] = X_train[col].apply(pd.to_numeric, errors='coerce')
+        X_train[col] = X_train[col].astype('int')
+
+y_train=traindata.iloc[:, -1]
+y_train=y_train.replace({'R': 1, 'S': 0})
+y_train=y_train.astype('int')
+
+
+model = XGBClassifier(learning_rate=0.01,max_depth=4,n_estimators=1000,random_state=2, enable_categorical=True)
+model.fit(X_train, y_train)
+
+predictdata=pd.read_csv("predict_use_data/Salmonella_enterica_all_checkmPass_20231128_prokkapath_info_haveyear_havecountry_2014_arg_last_use_result_last_CFZ_topfeature_matrix.txt",sep='\t', header=0,index_col=0, keep_default_na=False, dtype=CategoricalDtype())
+predictdata2 = predictdata.loc[:, X_train.columns.tolist()]
+for col in predictdata2.columns:
+    if "|" in col:
+        predictdata2[col] = predictdata2[col].cat.set_categories(['Yes', 'No'])
+    else:
+        predictdata2[col] = predictdata2[col].apply(pd.to_numeric, errors='coerce')
+        predictdata2[col] = predictdata2[col].astype('int')
+
+data_pred = model.predict(predictdata2)
+data_pred2 = np.where(data_pred == 1, 'R', data_pred)
+data_pred2 = np.where(data_pred2 == '0', 'S', data_pred2)
+df = pd.DataFrame([predictdata2.index, data_pred2], index=['Genome', 'CFZ_predict_phenotype'])
+df_transposed=df.T
+df_transposed.to_csv("predict_use_data/Salmonella_enterica_all_checkmPass_20231128_prokkapath_info_haveyear_havecountry_2014_arg_last_use_result_last_CFZ_topfeature_predict_result.txt", sep='\t', index=False, header=True)

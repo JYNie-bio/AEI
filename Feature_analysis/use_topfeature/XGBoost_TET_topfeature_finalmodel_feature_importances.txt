@@ -1,0 +1,6 @@
+	Feature	Importance
+0	tetracycline_efflux_MFS_transporter_Tet(B)	0.5106257
+1	tetracycline_repressor_protein_class_A(tetR)	0.46099362
+3	tetracycline_resistance_transcriptional_repressor_TetR(G)	0.019339694
+4	tetracycline_efflux_MFS_transporter_Tet(D)	0.009040957
+2	tetracycline_efflux_MFS_transporter_Tet(G)	0.0

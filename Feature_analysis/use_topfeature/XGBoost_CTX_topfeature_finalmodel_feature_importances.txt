@@ -1,0 +1,11 @@
+	Feature	Importance
+1	extended-spectrum_class_A_beta-lactamase_CTX-M-65	0.25643343
+0	extended-spectrum_class_A_beta-lactamase_CTX-M-55	0.24702035
+2	extended-spectrum_class_A_beta-lactamase_CTX-M-14	0.16552901
+4	class_C_beta-lactamase_CMY-2	0.11230541
+7	MBL_fold_metallo-hydrolase(WP_001522969.1)	0.06428802
+3	quinolone_resistance_pentapeptide_repeat_protein_QnrB22	0.045592103
+9	sulfonamide-resistant_dihydropteroate_synthase_Sul1	0.038751505
+5	macrolide_resistance_MFS_transporter_Mrx(A)	0.027779184
+6	extended-spectrum_class_A_beta-lactamase_CTX-M-123	0.022642443
+8	extended-spectrum_class_A_beta-lactamase_CTX-M-64	0.01965856

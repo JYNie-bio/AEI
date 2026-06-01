@@ -1,0 +1,6 @@
+	Feature	Importance
+0	chloramphenicol/florfenicol_efflux_MFS_transporter_FloR	0.884561
+3	MBL_fold_metallo-hydrolase(WP_001109471.1)	0.039703213
+1	multidrug_efflux_RND_transporter_permease_subunit_OqxB	0.031185744
+2	chloramphenicol_efflux_MFS_transporter_CmlA1	0.028826179
+4	type_A-2_chloramphenicol_O-acetyltransferase_CatII	0.015723879
