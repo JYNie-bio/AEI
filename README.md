@@ -29,5 +29,3 @@ Scripts for:
 
 ## Environment & Dependencies
 Please install the required Python and R packages before running the scripts.
-
-### Python Dependencies
