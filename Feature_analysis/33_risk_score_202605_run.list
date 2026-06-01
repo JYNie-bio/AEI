@@ -1,0 +1,13 @@
+Rscript ~/Feature_analysis/33_risk_score_202605.R CIP
+Rscript ~/Feature_analysis/33_risk_score_202605.R CT
+Rscript ~/Feature_analysis/33_risk_score_202605.R NAL
+Rscript ~/Feature_analysis/33_risk_score_202605.R AMP
+Rscript ~/Feature_analysis/33_risk_score_202605.R AMS
+Rscript ~/Feature_analysis/33_risk_score_202605.R AZM
+Rscript ~/Feature_analysis/33_risk_score_202605.R CAZ
+Rscript ~/Feature_analysis/33_risk_score_202605.R CFZ
+Rscript ~/Feature_analysis/33_risk_score_202605.R CHL
+Rscript ~/Feature_analysis/33_risk_score_202605.R CTX
+Rscript ~/Feature_analysis/33_risk_score_202605.R GEN
+Rscript ~/Feature_analysis/33_risk_score_202605.R SXT
+Rscript ~/Feature_analysis/33_risk_score_202605.R TET

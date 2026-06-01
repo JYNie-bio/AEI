@@ -1,0 +1,13 @@
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl CIP
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl CT
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl NAL
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl AMP
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl AMS
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl AZM
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl CAZ
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl CFZ
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl CHL
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl CTX
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl GEN
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl SXT
+perl ~/Feature_analysis/32_get_Rgenome_202605.pl TET
