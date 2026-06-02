@@ -9,7 +9,7 @@ import sys
 import re
 
 arguments = sys.argv
-new_working_directory = "/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/"
+new_working_directory = "~/Feature_analysis/"
 os.chdir(new_working_directory)
 
 traindata=pd.read_csv("use_topfeature/XGBoost_GEN_topfeature_finalmodel_traindata.txt",sep='\t', header=0,index_col=0, keep_default_na=False, dtype=CategoricalDtype())

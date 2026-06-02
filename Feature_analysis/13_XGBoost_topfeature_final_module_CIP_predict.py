@@ -9,7 +9,7 @@ import sys
 from sklearn.metrics import make_scorer, accuracy_score, roc_auc_score, f1_score, recall_score, precision_score, cohen_kappa_score, balanced_accuracy_score
 
 arguments = sys.argv
-new_working_directory = "/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/"
+new_working_directory = "~/Feature_analysis/"
 os.chdir(new_working_directory)
 
 
