@@ -3,6 +3,7 @@
 This repository is intended to support the study on antimicrobial resistance (AMR) prediction and Antibiotic Resistance Epidemic Index (AEI) evaluation of Salmonella enterica. All resources are provided to ensure complete reproducibility of our analyses, model training, statistical tests and visualization.
 
 ## Overview of Subdirectories
+For detailed information, please refer to command.sh.
 - **ARG_combine**: Reference databases and annotation scripts for antimicrobial resistance gene annotation.
 - **RefSeq_Anno**: Raw data and computational codes for *Salmonella* RefSeq genome annotation, alongside scripts used to generate finalized gene annotation outputs.
 - **ARG_MIC**: Scripts for dataset construction and XGBoost model training based solely on antimicrobial resistance genes.
