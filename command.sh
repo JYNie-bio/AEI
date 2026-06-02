@@ -234,7 +234,7 @@ do
 done
 sbatch -J mgemerge -A p_phage -p batch4 -x node44 -n 2 -N 1 -a 1-922 ~/script/wrapper.sh 18_get_public184251_argAssomge_eachgenome_run.list.split.sh 1
 
-## merge
+## merge genome feature and mge position
 sbatch -J mgemerge -A p_phage -p batch4 -n 40 -N 1 -a 1-8 ~/script/wrapper.sh 19_merge_mgeARGinfo_addpos_202605_run.sh 1
 
 ###### genome associated with MGE's information
