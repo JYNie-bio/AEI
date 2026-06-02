@@ -10,7 +10,7 @@ my ($antibiotic)=(@ARGV);
 
 my %hashgenome;
 my %hash;
-open INPUT,"/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14880_public_184252_Allantibiotic_topfeature_matrix_result.txt";
+open INPUT,"~/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14880_public_184252_Allantibiotic_topfeature_matrix_result.txt";
 while(<INPUT>){
 	chomp;
 	my @arr=split(/\t/);
@@ -28,8 +28,8 @@ while(<INPUT>){
 }
 close INPUT;
 
-open INPUT1,"/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_year_host_country.txt";
-open OUTPUT1,">/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_year_host_country_onlyR.txt";
+open INPUT1,"~/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_year_host_country.txt";
+open OUTPUT1,">~/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_year_host_country_onlyR.txt";
 while(<INPUT1>){
 	my @arr=split(/\t/);
 	if($arr[0] eq "Genome"){
@@ -41,8 +41,8 @@ while(<INPUT1>){
 close INPUT1;
 close OUTPUT1;
 
-open INPUT1,"/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_mge_202605.txt";
-open OUTPUT1,">/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_mge_onlyR_202605.txt";
+open INPUT1,"~/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_mge_202605.txt";
+open OUTPUT1,">~/Feature_analysis/predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_${antibiotic}_topfeature_matrix_add_mge_onlyR_202605.txt";
 while(<INPUT1>){
         my @arr=split(/\t/);
         if($arr[0] eq "Genome"){

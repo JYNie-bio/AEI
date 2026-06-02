@@ -5,7 +5,7 @@ my ($faprefix)=@ARGV;
 #$faprefix: ah19S225
 
 my %hash;
-open INPUT,"/lustre/home/niejingyi2023/database/ARG_combine/ARG_combine_info_aa.txt" or die $!;
+open INPUT,"~/ARG_combine/ARG_combine_info_aa.txt" or die $!;
 while(<INPUT>){
 	chomp;
 	my @arr=split(/\t/);
@@ -14,8 +14,8 @@ while(<INPUT>){
 close INPUT;
 
 ######## diamond_ARG_combine ######
-open INPUT1,"/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out" or die "Cannot open /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out\n";
-open OUTPUT1,">/lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out.processed.txt" or die "Cannot write /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out.processed.txt\n";
+open INPUT1,"~/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out" or die "Cannot open ~/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out\n";
+open OUTPUT1,">~/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out.processed.txt" or die "Cannot write ~/Feature_analysis/ARGcombine_RefSeq_result/${faprefix}/${faprefix}_ARG_combine_diamond.out.processed.txt\n";
 print OUTPUT1 "query_id\tquery_length\tsubject_id\tsubject_length\talignment_length\tmismatches\tgap_opens\tqstart\tqend\tsstart\tsend\tidentity\tqcov\tscov\tevalue\tbit_score\tSubject_ID\tGene_name\tAlternative_name\tProduct_name\tGene_family\tDrug_class\tDrug_name\tMechanism_of_resistance\tOther_Notes\n";
 while(<INPUT1>){
 	chomp;

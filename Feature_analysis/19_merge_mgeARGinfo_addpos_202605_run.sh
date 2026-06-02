@@ -1,0 +1,8 @@
+perl 19_merge_own_mgeARGinfo_addpos_202605.pl 1
+perl 19_merge_own_mgeARGinfo_addpos_202605.pl 2
+perl 19_merge_own_mgeARGinfo_SNV_addpos_202605.pl 1
+perl 19_merge_own_mgeARGinfo_SNV_addpos_202605.pl 2
+perl 19_merge_public_mgeARGinfo_addpos_202605.pl 1
+perl 19_merge_public_mgeARGinfo_addpos_202605.pl 2
+perl 19_merge_public_mgeARGinfo_SNV_addpos_202605.pl 1
+perl 19_merge_public_mgeARGinfo_SNV_addpos_202605.pl 2
