@@ -190,7 +190,7 @@ python 12_XGBoost_topfeature_final_module_TET_ARGMIC_absence01.py
 
 
 ####### auc plot
-python ~/Plot/26_plot_roc_add_mutaion_models.py
+python ~/Plot/3_plot_roc_add_mutaion_models.py
 
 
 ###################### Global risk analysis ###################################################################################################
@@ -214,6 +214,28 @@ perl 17_count_eachMGE_crossedLineage_genome2.pl ~/MGE/all_species_runned_lineage
 perl 17_2_count_eachMGE_crossedLineage_selectuse_genome1use_202605.pl
 #removed plasmid -       Phylum  Proteobacteria;Firmicutes;Bacteroidetes;Actinobacteria;Actinomycetota;Fusobacteria, which will will mislead the calculation resultswill mislead the calculation results
 
+#####Calculate the correlation between features and MGE in the genome
+## own genomes mge asso
+cd ~/Feature_analysis
+cat ../Salmonella_MIC_usegenome_20240829.list |while read i; do echo -e "perl $PWD/23_get_own14880_argAssomge_eachgenome.pl ~/RefSeq_Anno/RefSeq_Anno_Result_14880file_addinfo_add_prokka_arg_fromdiamond_havearg_add_mutation_models_last_use_result_last.txt ~/MGE/MGE_result/Salmonella/${i}/${i}_MGE_merged_site.txt ~/MGE/MGE_result/Salmonella/${i}/${i}_MGE_merged_ARGcombine_result_add_mutation_models.txt";echo -e "perl $PWD/23_get_own14880_argAssomge_eachgenome.pl ~/RefSeq_Anno/RefSeq_Anno_Result_14880file_addinfo_add_prokka_arg_fromdiamond_havearg_last_use_result_last.txt ~/MGE/MGE_result/Salmonella/${i}/${i}_MGE_merged_site.txt ~/MGE/MGE_result/Salmonella/${i}/${i}_MGE_merged_ARGcombine_result.txt">>23_get_own14880_argAssomge_eachgenome_run.list;done
+split -l 100 23_get_own14880_argAssomge_eachgenome_run.list rundata/23_get_own14880_argAssomge_eachgenome_run.list.split
+ls rundata/23_get_own14880_argAssomge_eachgenome_run.list.split*|while read i
+do
+        echo "sh $PWD/${i}">>23_get_own14880_argAssomge_eachgenome_run.list.split.sh
+done
+sbatch -J mgemerge -A p_phage -p batch24 -n 4 -N 1 -a 1-298 ~/script/wrapper.sh 23_get_own14880_argAssomge_eachgenome_run.list.split.sh 1
+
+## public genomes mge asso
+cat MGE_Salmonella_enterica_runedgenome_path_2014use.txt|while read i; do arr=($i); echo -e "perl $PWD/18_get_argAssomge_eachgenome.pl /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${arr[0]}/${arr[0]}_Salmonella_RefSeq_add_prokka_arg_fromdiamond_last_use_result.txt ${arr[1]}/${arr[0]}_MGE_merged_site.txt $PWD/MGE_prerunned/${arr[0]}_MGE_merged_ARGcombine_result.txt";echo -e "perl $PWD/18_get_argAssomge_eachgenome.pl /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${arr[0]}/${arr[0]}_Salmonella_RefSeq_add_prokka_arg_fromdiamond_add_mutation_models_last_use_result.txt ${arr[1]}/${arr[0]}_MGE_merged_site.txt $PWD/MGE_prerunned/${arr[0]}_MGE_merged_ARGcombine_result_add_mutation_models.txt">>18_get_public184251_argAssomge_eachgenome_run.list;done
+split -l 400 18_get_public184251_argAssomge_eachgenome_run.list rundata/18_get_public184251_argAssomge_eachgenome_run.list.split
+ls rundata/18_get_public184251_argAssomge_eachgenome_run.list.split*|while read i
+do
+        echo "sh $PWD/${i}">>18_get_public184251_argAssomge_eachgenome_run.list.split.sh
+done
+sbatch -J mgemerge -A p_phage -p batch4 -x node44 -n 2 -N 1 -a 1-922 ~/script/wrapper.sh 18_get_public184251_argAssomge_eachgenome_run.list.split.sh 1
+
+## merge
+sbatch -J mgemerge -A p_phage -p batch4 -n 40 -N 1 -a 1-8 ~/script/wrapper.sh 19_merge_mgeARGinfo_addpos_202605_run.sh 1
 
 ###### genome associated with MGE's information
 sbatch -J a -A p_phage -p batch -n 10 -N 1 -a 1-13 ~/script/wrapper.sh 29_2use_get_genome_usemge_info_202605_run.list 1
