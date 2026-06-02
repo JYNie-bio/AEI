@@ -31,9 +31,9 @@ Processed **feature matrices and metadata tables** used for modeling across 13 a
 
 ### 4. Trained XGBoost Models
 **Complete trained model files**, along with detailed model architecture and parameter configurations for full reproduction of XGBoost models.
-**Finalized XGBoost models** are deposited at: Feature_analysis/use_topfeature/XGBoost_XXX_topfeature_finalmodel_traindata.txt.
-**Corresponding feature** importance results of each model: Feature_analysis/use_topfeature/XGBoost_XXX_topfeature_finalmodel_feature_importances.txt.
-**Model application instructions and optimized hyperparameters** for all 13 antibiotics are documented in: Feature_analysis/13_XGBoost_topfeature_final_module_XXX_predict.py.
+- **Finalized XGBoost models** are deposited at: Feature_analysis/use_topfeature/XGBoost_XXX_topfeature_finalmodel_traindata.txt.
+- **Corresponding feature** importance results of each model: Feature_analysis/use_topfeature/XGBoost_XXX_topfeature_finalmodel_feature_importances.txt.
+- **Model application instructions and optimized hyperparameters** for all 13 antibiotics are documented in: Feature_analysis/13_XGBoost_topfeature_final_module_XXX_predict.py.
 
 ### 5. Analytical & Visualization Code
 Scripts for:
