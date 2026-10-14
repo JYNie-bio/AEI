@@ -12,6 +12,7 @@ For detailed information, please refer to command.sh.
 > Within each above folder, the subfolder **RS_811** contains matched phenotypic information and feature matrices for corresponding modeling workflows.
 - **MGE**: Source codes for mobile genetic element (MGE) annotation.
 - **Feature_analysis**: Codes and supporting datasets for the calculation of the **Antibiotic Resistance Epidemic Index (AEI)**.
+- **chewbbaca**: Codes and datasets for testing model generalization ability.
 - **Plot**: All scripting codes used for figure generation and statistical visualization.
 
 ## Repository Contents
