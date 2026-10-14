@@ -226,7 +226,7 @@ done
 sbatch -J mgemerge -A p_phage -p batch24 -n 4 -N 1 -a 1-298 ~/script/wrapper.sh 23_get_own14880_argAssomge_eachgenome_run.list.split.sh 1
 
 ## public genomes mge asso
-cat MGE_Salmonella_enterica_runedgenome_path_2014use.txt|while read i; do arr=($i); echo -e "perl $PWD/18_get_argAssomge_eachgenome.pl /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${arr[0]}/${arr[0]}_Salmonella_RefSeq_add_prokka_arg_fromdiamond_last_use_result.txt ${arr[1]}/${arr[0]}_MGE_merged_site.txt $PWD/MGE_prerunned/${arr[0]}_MGE_merged_ARGcombine_result.txt";echo -e "perl $PWD/18_get_argAssomge_eachgenome.pl /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${arr[0]}/${arr[0]}_Salmonella_RefSeq_add_prokka_arg_fromdiamond_add_mutation_models_last_use_result.txt ${arr[1]}/${arr[0]}_MGE_merged_site.txt $PWD/MGE_prerunned/${arr[0]}_MGE_merged_ARGcombine_result_add_mutation_models.txt">>18_get_public184251_argAssomge_eachgenome_run.list;done
+cat MGE_Salmonella_enterica_runedgenome_path_2014use.txt|while read i; do arr=($i); echo -e "perl $PWD/18_get_argAssomge_eachgenome.pl ~/Feature_analysis/ARGcombine_RefSeq_result/${arr[0]}/${arr[0]}_Salmonella_RefSeq_add_prokka_arg_fromdiamond_last_use_result.txt ${arr[1]}/${arr[0]}_MGE_merged_site.txt $PWD/MGE_prerunned/${arr[0]}_MGE_merged_ARGcombine_result.txt";echo -e "perl $PWD/18_get_argAssomge_eachgenome.pl /lustre/home/niejingyi2023/project/bjCDC/Feature_analysis/ARGcombine_RefSeq_result/${arr[0]}/${arr[0]}_Salmonella_RefSeq_add_prokka_arg_fromdiamond_add_mutation_models_last_use_result.txt ${arr[1]}/${arr[0]}_MGE_merged_site.txt $PWD/MGE_prerunned/${arr[0]}_MGE_merged_ARGcombine_result_add_mutation_models.txt">>18_get_public184251_argAssomge_eachgenome_run.list;done
 split -l 400 18_get_public184251_argAssomge_eachgenome_run.list rundata/18_get_public184251_argAssomge_eachgenome_run.list.split
 ls rundata/18_get_public184251_argAssomge_eachgenome_run.list.split*|while read i
 do
@@ -250,6 +250,104 @@ perl 33_2_combine_risk_score_202605.pl
 awk -F'\t' '{if($1=="Genome"){printf $0}else{printf "\n"$1;for(i=2;i<=NF;i++){if($i=="-"){printf "\t-"}else if($i>=12){printf "\tI"}else if($i>=4){printf "\tII"}else{printf "\tIII"}}}}' predict_use_data_add_mutation_models/All_antibiotic_All_genome_risk_score_ownuse14846_publicANI96_173348_onlyR_202605.txt>predict_use_data_add_mutation_models/All_antibiotic_All_genome_risk_score_ownuse14846_publicANI96_173348_onlyR_risklevel_202605.txt
 awk -F'\t' 'NR==FNR{a[$1]=$(NF-2)"\t"$NF}NR>FNR{if($1 in a){print a[$1]"\t"$0}}' predict_use_data_add_mutation_models/Salmonella_enterica_ownuse14846_publicANI96_173348_GEN_topfeature_matrix_add_year_host_country.txt predict_use_data_add_mutation_models/All_antibiotic_All_genome_risk_score_ownuse14846_publicANI96_173348_onlyR_risklevel_202605.txt>predict_use_data_add_mutation_models/All_antibiotic_All_genome_risk_score_ownuse14846_publicANI96_173348_onlyR_risklevel_add_year_country_202605.txt
 
+################################################## cgMLST & re-splitting #############################################
+cd ~/chewbbaca
+. ~/miniconda3/bin/activate chewbbaca3
+chewBBACA.py AlleleCall -i ~/data/Salmonella_20230928_nie -g ~/database/chewBBACA/se_cl_c3_schema/ -o ~/chewbbaca/ --cpu 80
+Rscript allele_split_test_close_independent2.R 1
+Rscript allele_split_test_close_independent2.R 2
+Rscript allele_split_test_close_independent2.R 3
+Rscript allele_split_test_close_independent2.R 4
+Rscript allele_split_test_close_independent2.R 5
+Rscript allele_split_test_close_independent2.R 6
+Rscript allele_split_test_close_independent2.R 7
+Rscript allele_split_test_close_independent2.R 8
+Rscript allele_split_test_close_independent2.R 9
+Rscript allele_split_test_close_independent2.R 10
+Rscript allele_split_test_close_independent2.R 11
+Rscript allele_split_test_close_independent2.R 12
+Rscript allele_split_test_close_independent2.R 13
+Rscript allele_status_distance.R
 
+cd ~/ARG_with_SNP
+sh 5_0_get_nearindependent.sh
+python 5_XGBoost_topfeature_final_module_CIP_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_AZM_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_NAL_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_CT_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_CAZ_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_SXT_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_GEN_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_CFZ_predict_test_near_vs_independent_from_ownvalid.py
+
+cd ~/ARG_MIC
+sh 5_0_get_nearindependent.sh
+python 5_XGBoost_topfeature_final_module_CHL_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_AMP_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_AMS_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_CTX_predict_test_near_vs_independent_from_ownvalid.py
+python 5_XGBoost_topfeature_final_module_TET_predict_test_near_vs_independent_from_ownvalid.py
+
+
+echo -e "Antibiotic\tType\tPrecision\tRecall\tSpecificity\tF1_Score\tAccuracy\tBalanced_Accuracy\tAUC\tMajor_Error\tVery_Major_Error\tNPV\tPPV\tPrevalence">~/chewbbaca/distance_splittest_into_nearIndependent_XGBoostresult.txt
+for i in CIP AZM NAL CT CAZ SXT GEN CFZ;do cat ~/ARG_with_SNP/RS_811/*_${i}_verify_test_cgmlst_*_finalmodel_XGBoostresult.txt|grep -v "Precision"|awk -F'\t' -v i=$i '{print i"\t"$0}'>>~/chewbbaca/distance_splittest_into_nearIndependent_XGBoostresult.txt;done
+for i in CHL AMP AMS CTX TET;do cat ~/ARG_MIC/RS_811/*_${i}_verify_test_cgmlst_*_finalmodel_XGBoostresult.txt|grep -v "Precision"|awk -F'\t' -v i=$i '{print i"\t"$0}'>>~/chewbbaca/distance_splittest_into_nearIndependent_XGBoostresult.txt;done
+
+######## re-split
+cd ~/chewbbaca
+python get_3cgmlst_10mlst_group.py
+python get_trainvaltest_sample.py AMP
+python get_trainvaltest_sample.py NAL
+python get_trainvaltest_sample.py CAZ
+
+cd ~/ARG_MIC
+Rscript 9_0_get_group_matrix_absence01.R AMP
+sbatch -J a -A p_phage -p batch3 -n 112 -N 1 -a 1 ~/script/wrapper.sh 9_1_sklearn_8cv10fold_default_allfeature_absence01_verifytest_combine_run.list 1
+sbatch -J a -A p_phage -p batch3 -n 112 -N 1 -a 1-2 ~/script/wrapper.sh 9_2_sklearn_8cv10fold_default_allfeature_absence01_topfeature_verifytest_combine_run.list 1
+
+cd ~/ARG_with_SNP
+Rscript 9_0_get_group_matrix_ARGanno_absence01_SNPmatrix959090_YesNoNA.R NAL
+Rscript 9_0_get_group_matrix_ARGanno_absence01_SNPmatrix959090_absence01.R CAZ
+sbatch -J a -A p_phage -p batch4 -n 42 -N 1 -a 1 ~/script/wrapper.sh 9_1_sklearn_8cv10fold_default_allfeature_ARGanno_absence01_SNPmatrix959090_absence01_category_and_combine_verifytest_run.list 1
+sbatch -J a -A p_phage -p batch3 -n 112 -N 1 -a 1 ~/script/wrapper.sh 9_1_sklearn_8cv10fold_default_allfeature_ARGanno_absence01_SNPmatrix959090_YesNoNA_category_and_combine_verifytest_run.list 1
+sbatch -J a -A p_phage -p batch3 -n 112 -N 1 -a 1-3 ~/script/wrapper.sh 9_2_sklearn_8cv10fold_default_allfeature_ARGanno_absence01_SNPmatrix959090_absence01_topfeature_category_and_combine_verifytest_run.list 1
+sbatch -J a -A p_phage -p batch3 -n 112 -N 1 -a 1-3 ~/script/wrapper.sh 9_2_sklearn_8cv10fold_default_allfeature_ARGanno_absence01_SNPmatrix959090_YesNoNA_topfeature_category_and_combine_verifytest_all_run.list 1
+
+#### final model
+cd ~/Feature_analysis/
+python 12_XGBoost_topfeature_final_module_AMP_ARGMIC_absence01_stcgmlst.py
+python 12_XGBoost_topfeature_final_module_CAZ_ARGMIC_absence01_SNP_absence01_stcgmlst.py
+python 12_XGBoost_topfeature_final_module_NAL_ARGMIC_absence01_SNP_YesNoNA_stcgmlst.py
+
+cd ~/chewbbaca/split_results
+awk -F'\t' '{print $3}' NAL_fold09_train.txt>a1.txt
+awk -F'\t' '{print $3}' NAL_fold09_val.txt>>a1.txt
+awk -F'\t' 'NR==FNR{a[$1]=1}NR>FNR{if(!($3 in a)){print}}' a1.txt NAL_test.txt >a2.txt
+awk -F'\t' -v OFS="\t" '{if($1=="Genome_name"){print $0"\tGroup"}else{print $0"\ttrain"}}' NAL_fold09_train.txt>NAL_alldata.txt
+awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttrain"}}' NAL_fold09_val.txt>>NAL_alldata.txt
+awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttest"}}' NAL_test.txt>>NAL_alldata.txt
+awk -F'\t' -v OFS="\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a){print $1"\t"$2"\t"$3"\t"$4"\tuniquetest"}else{print $0}}' a2.txt NAL_alldata.txt>NAL_alldata2.txt
+mv NAL_alldata2.txt NAL_alldata.txt
+awk -F'\t' '{print $3}' CAZ_fold09_train.txt>a1.txt
+awk -F'\t' '{print $3}' CAZ_fold09_val.txt>>a1.txt
+awk -F'\t' 'NR==FNR{a[$1]=1}NR>FNR{if(!($3 in a)){print}}' a1.txt CAZ_test.txt >a2.txt
+awk -F'\t' -v OFS="\t" '{if($1=="Genome_name"){print $0"\tGroup"}else{print $0"\ttrain"}}' CAZ_fold09_train.txt>CAZ_alldata.txt
+awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttrain"}}' CAZ_fold09_val.txt>>CAZ_alldata.txt
+awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttest"}}' CAZ_test.txt>>CAZ_alldata.txt
+awk -F'\t' -v OFS="\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a){print $1"\t"$2"\t"$3"\t"$4"\tuniquetest"}else{print $0}}' a2.txt CAZ_alldata.txt>CAZ_alldata2.txt
+mv CAZ_alldata2.txt CAZ_alldata.txt
+awk -F'\t' '{print $3}' AMP_fold03_train.txt>a1.txt
+awk -F'\t' '{print $3}' AMP_fold03_val.txt>>a1.txt
+awk -F'\t' 'NR==FNR{a[$1]=1}NR>FNR{if(!($3 in a)){print}}' a1.txt AMP_test.txt >a2.txt
+awk -F'\t' -v OFS="\t" '{if($1=="Genome_name"){print $0"\tGroup"}else{print $0"\ttrain"}}' AMP_fold03_train.txt>AMP_alldata.txt
+awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttrain"}}' AMP_fold03_val.txt>>AMP_alldata.txt
+awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttest"}}' AMP_test.txt>>AMP_alldata.txt
+awk -F'\t' -v OFS="\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a){print $1"\t"$2"\t"$3"\t"$4"\tuniquetest"}else{print $0}}' a2.txt AMP_alldata.txt>AMP_alldata2.txt
+mv AMP_alldata2.txt AMP_alldata.txt
+
+##### status importance
+awk -F'\t' 'BEGIN{b=0}NR==FNR{a[$2]=1}NR>FNR{if($2 in a){b=b+$3}}END{print b}' use_topfeature/XGBoost_CAZ_topfeature_finalmodel_feature_importances_stcgmlst.txt use_topfeature/XGBoost_CAZ_topfeature_finalmodel_feature_importances.txt
+awk -F'\t' 'BEGIN{b=0}NR==FNR{a[$2]=1}NR>FNR{if($2 in a){b=b+$3}}END{print b}' use_topfeature/XGBoost_NAL_topfeature_finalmodel_feature_importances_stcgmlst.txt use_topfeature/XGBoost_NAL_topfeature_finalmodel_feature_importances.txt
+awk -F'\t' 'BEGIN{b=0}NR==FNR{a[$2]=1}NR>FNR{if($2 in a){b=b+$3}}END{print b}' use_topfeature/XGBoost_AMP_topfeature_finalmodel_feature_importances_stcgmlst.txt use_topfeature/XGBoost_AMP_topfeature_finalmodel_feature_importances.txt
 
 
