@@ -344,10 +344,3 @@ awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttrain"}}' AMP_fold03_v
 awk -F'\t' -v OFS="\t" '{if($1!="Genome_name"){print $0"\ttest"}}' AMP_test.txt>>AMP_alldata.txt
 awk -F'\t' -v OFS="\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a){print $1"\t"$2"\t"$3"\t"$4"\tuniquetest"}else{print $0}}' a2.txt AMP_alldata.txt>AMP_alldata2.txt
 mv AMP_alldata2.txt AMP_alldata.txt
-
-##### status importance
-awk -F'\t' 'BEGIN{b=0}NR==FNR{a[$2]=1}NR>FNR{if($2 in a){b=b+$3}}END{print b}' use_topfeature/XGBoost_CAZ_topfeature_finalmodel_feature_importances_stcgmlst.txt use_topfeature/XGBoost_CAZ_topfeature_finalmodel_feature_importances.txt
-awk -F'\t' 'BEGIN{b=0}NR==FNR{a[$2]=1}NR>FNR{if($2 in a){b=b+$3}}END{print b}' use_topfeature/XGBoost_NAL_topfeature_finalmodel_feature_importances_stcgmlst.txt use_topfeature/XGBoost_NAL_topfeature_finalmodel_feature_importances.txt
-awk -F'\t' 'BEGIN{b=0}NR==FNR{a[$2]=1}NR>FNR{if($2 in a){b=b+$3}}END{print b}' use_topfeature/XGBoost_AMP_topfeature_finalmodel_feature_importances_stcgmlst.txt use_topfeature/XGBoost_AMP_topfeature_finalmodel_feature_importances.txt
-
-
