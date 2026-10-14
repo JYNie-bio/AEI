@@ -1,0 +1,2 @@
+python /lustre/home/niejingyi2023/project/bjCDC/ARG_MIC/9_2_sklearn_8cv10fold_default_allfeature_absence01_topfeature_verifytest_combine.py AMP 3
+python /lustre/home/niejingyi2023/project/bjCDC/ARG_MIC/9_2_sklearn_8cv10fold_default_allfeature_absence01_topfeature_verifytest_combine.py AMP 5
